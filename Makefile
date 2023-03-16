@@ -7,7 +7,12 @@ SANIFLAG	=	-g
 FLAGS		=	-Wall -Wextra -Werror $(SANIFLAG)
 
 # This works only when mlx is loaded into the env (on school computers)
-MLX_INCLUDE =	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+# This MLX_INCLUDE is for Linux
+#MLX_INCLUDE =	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+# This MLX_INCLUDE is for MacOS
+MLX_INCLUDE =	-Lmlx/ -lmlx -L/usr/lib/ -lXext -lX11 -lm -I ./ -I ./mlx/
 
 # This is all the source files we want to compile
 SRC_FOLDER	=	src/
