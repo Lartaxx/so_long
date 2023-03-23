@@ -22,9 +22,6 @@ GNL_LIB		= 	$(GNL_PATH)get_next_line.a
 PRINTF_PATH =	printf/
 PRINTF_LIB	=	$(PRINTF_PATH)libftprintf.a
 
-LIBFT_PATH =   libft/
-LIBFT_LIB      =       $(LIBFT_PATH)libft.a
-
 
 # Our compile rules
 %.o: %.c
@@ -33,7 +30,6 @@ LIBFT_LIB      =       $(LIBFT_PATH)libft.a
 $(NAME): 	$(OBJS)
 	make -C $(GNL_PATH)
 	make -C $(PRINTF_PATH)
-	make -C $(LIBFT_PATH)
 	gcc $(FLAGS) $(OBJS) $(GNL_LIB) $(PRINTF_LIB) $(MLX_INCLUDE) -o $(NAME)
 
 # Here are mandatory rules
