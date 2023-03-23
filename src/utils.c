@@ -12,14 +12,27 @@
 
 #include "so_long.h"
 
-int    closeWindow(int keycode, t_vars *vars)
+int    closeWindow(t_vars *vars)
 {
-	keycode = (int)keycode;
-	if (keycode == 65307)
+	mlx_destroy_window(vars->mlx, vars->win);
+	exit(0);
+}
+
+int		buttonPressed(int keycode, t_vars *vars)
+{
+	if (keycode == ON_DESTROY)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}
+	if (keycode == FORWARD)
+		player_move(vars, 1);
+	if (keycode == BACKWARD)
+		player_move(vars, 2);
+	if (keycode == LEFT)
+		player_move(vars, 3);
+	if (keycode == RIGHT)
+		player_move(vars, 4);
 	return (0);
 }
 
@@ -33,4 +46,16 @@ int		key_hook(int keycode, t_vars *vars)
 int		create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int ft_strlen2(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }

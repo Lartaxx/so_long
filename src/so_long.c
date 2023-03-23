@@ -16,13 +16,17 @@ int main()
 {
     t_vars vars;
 
+    size_of_map(&vars);
+    malloc_tab(&vars);
+    if (map_have_errors(&vars) == 0)
+        return (0);
     vars.mlx = mlx_init();
-    vars.win = mlx_new_window(vars.mlx, 800, 600, "So Long");
-    vars.img = mlx_new_image(vars.mlx, 200, 200);
-    mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_hook(vars.win, 2, (1L<<0), closeWindow, &vars);
-    ft_printf("\n Couleur en int : %d", create_trgb(0, 255, 0, 0));
-    mlx_string_put(vars.mlx, vars.win, 10, 10, COLOR_RED, "Hello world!");
+    vars.win = mlx_new_window(vars.mlx, vars.width * 64, vars.height * 64, "So Long");
+    vars.moves = 0;
+    get_player_position(&vars);
+    mlx_hook(vars.win, 2, 1, buttonPressed, &vars);
+    mlx_loop_hook(vars.mlx, print_map, &vars);
+    mlx_hook(vars.win, 17, 1, closeWindow, &vars);
     mlx_loop(vars.mlx);
     return (0);
 }
